@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game Tebak Gambar</title>
+
+    <link rel="stylesheet" href="game.css" />
+
+    <style>
+      body {
+        background-color: #eeefe0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="game-panel">
+      <div class="game-title">Game Tebak Gambar</div>
+
+      <div class="container-gambar">
+        <img
+          id="gambar"
+          src="https://images.seeklogo.com/logo-png/20/1/html5-logo-png_seeklogo-206834.png"
+        />
+      </div>
+
+      <div class="container-isian">
+        <input type="text" placeholder="Tulis tebakanmu..." id="isian" />
+        <button id="tombol-tebak">Tebak</button>
+      </div>
+
+      <div class="game-statistik">
+        <div>
+          <div class="label">Skor</div>
+          <div class="value" id="skor">0</div>
+        </div>
+
+        <div>
+          <div class="label">Level</div>
+          <div class="value" id="level">1</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
