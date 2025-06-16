@@ -68,10 +68,11 @@ if (session !== null) {
   nyawa = session.nyawa;
 }
 
-const highScore = localStorage.getItem("highScore");
-if (highScore !== null) {
-  document.getElementById("high-skor").textContent = highScore;
+let highScore = localStorage.getItem("highScore");
+if (highScore === null) {
+  highScore = 0;
 }
+document.getElementById("high-skor").textContent = highScore;
 
 updateGame();
 
@@ -100,6 +101,8 @@ function cekJawaban() {
       img.src = logos[level].gambar;
       resetBlur();
     } else {
+      saveHighScore();
+      resetSession();
       alert("Selamat! Kamu menang! 🎉");
     }
 
@@ -124,11 +127,10 @@ function cekJawaban() {
   document.getElementById("tebakan").value = "";
 
   if (nyawa == 0) {
-    document.getElementById("canvas").remove();
-    document.getElementById("tebakan").remove();
-    document.getElementById("tombol").remove();
+    document.getElementById("tebakan").disabled = true;
+    document.getElementById("tombol").disabled = true;
 
-    showFeedback("game selesai! 🎉", "correct");
+    showFeedback("GAME OVER", "incorrect");
 
     saveHighScore();
     resetSession();

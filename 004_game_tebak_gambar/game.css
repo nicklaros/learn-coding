@@ -1,70 +1,119 @@
-#skor,
-#level,
-#high-skor {
-  font-size: 50px;
-  color: rgb(55, 141, 216);
-  font-weight: bold;
-}
-
-.label {
-  font-size: 50px;
-  color: blueviolet;
-  font-weight: bold;
-}
-
 body {
-  background-color: aqua;
+  background-color: #eeefe0;
 }
 
-#nyawa {
-  font-size: 40px;
-  letter-spacing: 5px;
+.container-game {
+  background-color: #d1d8be;
+  border: 1px solid #819a91;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  max-width: 800px;
+  margin: 25px auto;
+}
+
+.game-title {
+  background-color: #819a91;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  padding: 15px;
+}
+
+.game-body {
+  display: flex;
+}
+
+.game-body > div {
+  width: 50%;
+  padding: 15px;
+}
+
+.container-gambar {
+  background-color: white;
+}
+
+.container-isian {
+  display: flex;
+  height: 35px;
 }
 
 #tebakan {
-  transition: all 0.3s;
+  flex: auto;
 }
 
-.jawaban-benar {
-  border-color: green !important;
-  transform: scale(1.05);
+#tombol {
+  font-weight: bold;
+  padding: 10px 25px;
 }
 
-.jawaban-salah {
-  border-color: red !important;
-  animation: shake 0.5s;
+.game-statistik {
+  margin-top: 25px;
+  font-weight: bold;
 }
 
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-10px);
-  }
-  75% {
-    transform: translateX(10px);
-  }
+.game-statistik > div {
+  border-radius: 25px;
+  overflow: hidden;
+  display: flex;
+  margin: 1px;
+}
+
+.game-statistik .label {
+  background-color: #819a91;
+  color: white;
+  text-align: right;
+  width: 40%;
+  padding: 10px;
+}
+
+.game-statistik .value {
+  text-align: left;
+  flex: auto;
+  padding: 10px;
+  background-color: white;
 }
 
 #feedback-message {
-  font-size: 40px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  opacity: 0; /* Awalnya tidak terlihat */
-  transition: opacity 0.5s ease-in-out; /* Animasi fade in/out */
+  border-radius: 25px;
+  max-width: 770px;
+  margin: auto;
+  padding: 15px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .correct {
-  background-color: #4caf50; /* Hijau */
-  color: white;
+  border: 1px solid #819a91;
+  background-color: #a7c1a8;
 }
 
 .incorrect {
-  background-color: #f44336; /* Merah */
-  color: white;
+  border: 1px solid #af3e3e;
+  background-color: #da6c6c;
+}
+
+@media only screen and (max-width: 600px) {
+  .game-body {
+    display: block;
+  }
+
+  .game-body > div {
+    width: 100%;
+    padding: 0;
+  }
+
+  .game-statistik > div {
+    border-radius: 0;
+    display: flex;
+    margin: 0;
+  }
+
+  .container-gambar {
+    padding: 25px 0 !important;
+  }
+
+  .container-isian {
+    padding-top: 25px;
+  }
 }

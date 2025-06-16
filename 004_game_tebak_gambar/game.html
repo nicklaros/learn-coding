@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Game tebak gambar</title>
@@ -6,33 +7,45 @@
   </head>
 
   <body>
-    <input type="text" id="tebakan" placeholder="Tulis tebakanmu..." />
+    <div class="container-game">
+      <div class="game-title">Game Tebak Gambar</div>
 
-    <button id="tombol" onclick="cekJawaban()">tebak</button>
+      <div class="game-body">
+        <div class="container-gambar">
+          <canvas id="canvas"></canvas>
+        </div>
 
-    <br />
+        <div>
+          <div class="container-isian">
+            <input type="text" id="tebakan" placeholder="Tulis tebakanmu..." />
 
-    <canvas id="canvas"></canvas>
+            <button id="tombol" onclick="cekJawaban()">tebak</button>
+          </div>
 
-    <p>
-      <span class="label"> Skor: </span>
-      <span id="skor"></span>
+          <div class="game-statistik">
+            <div>
+              <div class="label">Skor:</div>
+              <div class="value" id="skor"></div>
+            </div>
 
-      <br />
+            <div>
+              <div class="label">High Skor:</div>
+              <div class="value" id="high-skor"></div>
+            </div>
 
-      <span class="label"> High Skor: </span>
-      <span id="high-skor"></span>
+            <div>
+              <div class="label">Level:</div>
+              <div class="value" id="level"></div>
+            </div>
 
-      <br />
-
-      <span class="label"> Level: </span>
-      <span id="level"></span>
-    </p>
-
-    <p>
-      <span class="label">Nyawa: </span>
-      <span id="nyawa"></span>
-    </p>
+            <div>
+              <div class="label">Nyawa:</div>
+              <div class="value" id="nyawa"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="feedback-message"></div>
 
