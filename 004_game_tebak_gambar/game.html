@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Game tebak gambar</title>
+
+    <link rel="stylesheet" href="game.css" />
+  </head>
+
+  <body>
+    <input type="text" id="tebakan" placeholder="Tulis tebakanmu..." />
+
+    <button id="tombol" onclick="cekJawaban()">tebak</button>
+
+    <br />
+
+    <canvas id="canvas"></canvas>
+
+    <p>
+      <span class="label"> Skor: </span>
+      <span id="skor"></span>
+
+      <br />
+
+      <span class="label"> High Skor: </span>
+      <span id="high-skor"></span>
+
+      <br />
+
+      <span class="label"> Level: </span>
+      <span id="level"></span>
+    </p>
+
+    <p>
+      <span class="label">Nyawa: </span>
+      <span id="nyawa"></span>
+    </p>
+
+    <div id="feedback-message"></div>
+
+    <script src="game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+#skor,
+#level,
+#high-skor {
+  font-size: 50px;
+  color: rgb(55, 141, 216);
+  font-weight: bold;
+}
+
+.label {
+  font-size: 50px;
+  color: blueviolet;
+  font-weight: bold;
+}
+
+body {
+  background-color: aqua;
+}
+
+#nyawa {
+  font-size: 40px;
+  letter-spacing: 5px;
+}
+
+#tebakan {
+  transition: all 0.3s;
+}
+
+.jawaban-benar {
+  border-color: green !important;
+  transform: scale(1.05);
+}
+
+.jawaban-salah {
+  border-color: red !important;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+#feedback-message {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  opacity: 0; /* Awalnya tidak terlihat */
+  transition: opacity 0.5s ease-in-out; /* Animasi fade in/out */
+}
+
+.correct {
+  background-color: #4caf50; /* Hijau */
+  color: white;
+}
+
+.incorrect {
+  background-color: #f44336; /* Merah */
+  color: white;
+}
