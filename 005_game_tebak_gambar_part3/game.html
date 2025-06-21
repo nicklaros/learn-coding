@@ -10,12 +10,13 @@
       rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="common.css" />
     <link rel="stylesheet" href="game.css" />
   </head>
 
   <body>
     <div class="container-game">
-      <div class="game-title">Game Tebak Gambar</div>
+      <div class="game-title" id="game-title"></div>
 
       <div class="game-body">
         <div class="container-gambar">
@@ -31,22 +32,22 @@
 
           <div class="game-statistik">
             <div>
-              <div class="label">Skor:</div>
+              <div class="label">Skor</div>
               <div class="value" id="skor"></div>
             </div>
 
             <div>
-              <div class="label">High Skor:</div>
+              <div class="label">High Skor</div>
               <div class="value" id="high-skor"></div>
             </div>
 
             <div>
-              <div class="label">Level:</div>
+              <div class="label">Level</div>
               <div class="value" id="level"></div>
             </div>
 
             <div>
-              <div class="label">Nyawa:</div>
+              <div class="label">Nyawa</div>
               <div class="value" id="nyawa" style="letter-spacing: 0.3em"></div>
             </div>
           </div>
@@ -56,6 +57,7 @@
 
     <div id="feedback-message"></div>
 
+    <script src="common.js"></script>
     <script src="game.js"></script>
   </body>
 </html>

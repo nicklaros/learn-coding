@@ -56,16 +56,22 @@ const logos = [
 ];
 
 const feedbackMessageDiv = document.getElementById("feedback-message");
+const gameTitleDiv = document.getElementById("game-title");
 
 let skor = 0;
 let level = 0;
 let nyawa = 3;
 
 const session = loadSession();
+
 if (session !== null) {
   skor = session.skor;
   level = session.level;
   nyawa = session.nyawa;
+
+  gameTitleDiv.textContent = "Player - " + session.playerName;
+} else {
+  location.href = "./index.html";
 }
 
 let highScore = localStorage.getItem("highScore");
@@ -111,7 +117,9 @@ function cekJawaban() {
   } else {
     nyawa--;
 
-    skor -= 2;
+    // skor minimal adalah 0
+    skor = Math.max(skor - 2, 0);
+
     showFeedback(`Salah! Nyawa berkurang. Sisa nyawa: ${nyawa}`, "incorrect"); // Feedback visual untuk salah
     document.getElementById("skor").textContent = skor;
 
@@ -137,15 +145,6 @@ function cekJawaban() {
   } else {
     autosaveSession();
   }
-}
-
-function loadSession() {
-  const encodedSession = localStorage.getItem("session");
-  if (encodedSession === null) {
-    return null;
-  }
-
-  return JSON.parse(encodedSession);
 }
 
 function autosaveSession() {
@@ -199,9 +198,35 @@ function showFeedback(message, type) {
 }
 
 function saveHighScore() {
+  // ===
+  // Save High Score
+  // ===
   const highScore = localStorage.getItem("highScore");
 
   if (highScore === null || parseInt(highScore) < skor) {
     localStorage.setItem("highScore", skor.toString());
   }
+
+  // ===
+  // Save Top Scorer
+  // ===
+  let encodedTopScorer = localStorage.getItem("topScorer");
+
+  let topScorer = [];
+  if (encodedTopScorer !== null) {
+    topScorer = JSON.parse(encodedTopScorer);
+  }
+
+  topScorer.push({
+    playerName: session.playerName,
+    skor: skor,
+  });
+
+  topScorer.sort(function (a, b) {
+    return a - b;
+  });
+
+  encodedTopScorer = JSON.stringify(topScorer);
+
+  localStorage.setItem("topScorer", encodedTopScorer);
 }
