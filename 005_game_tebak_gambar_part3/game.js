@@ -58,6 +58,7 @@ const logos = [
 const feedbackMessageDiv = document.getElementById("feedback-message");
 const gameTitleDiv = document.getElementById("game-title");
 
+let playerName = "";
 let skor = 0;
 let level = 0;
 let nyawa = 3;
@@ -65,11 +66,12 @@ let nyawa = 3;
 const session = loadSession();
 
 if (session !== null) {
+  playerName = session.playerName;
   skor = session.skor;
   level = session.level;
   nyawa = session.nyawa;
 
-  gameTitleDiv.textContent = "Player - " + session.playerName;
+  gameTitleDiv.textContent = "Player - " + playerName;
 } else {
   location.href = "./index.html";
 }
@@ -149,6 +151,7 @@ function cekJawaban() {
 
 function autosaveSession() {
   const session = {
+    playerName: playerName,
     skor: skor,
     level: level,
     nyawa: nyawa,
