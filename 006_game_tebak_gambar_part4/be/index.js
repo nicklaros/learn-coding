@@ -16,16 +16,6 @@ const dbClient = knex({
 
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  res.send("Halo semuanya.!");
-});
-
-// collection logos
-// list         = GET /logos
-// nambah baru  = POST /logos
-// edit logo    = PUT /logos/:nama
-// hapus logo   = DELETE /logos/:nama
-
 app.get("/logos", async (req, res) => {
   const logos = await dbClient.table("logos").select();
 
@@ -36,8 +26,8 @@ app.get("/logos", async (req, res) => {
 app.post("/logos", async (req, res) => {
   try {
     await dbClient.table("logos").insert({
-      nama: req.body.nama,
-      gambar: req.body.gambar,
+      name: req.body.name,
+      image: req.body.image,
       created_at: DateTime.now().toISO(),
     });
 
@@ -54,9 +44,9 @@ app.post("/logos", async (req, res) => {
 app.put("/logos/:nama", async (req, res) => {
   const updatedCount = await dbClient
     .table("logos")
-    .where("nama", req.params.nama)
+    .where("name", req.params.name)
     .update({
-      gambar: req.body.gambar,
+      image: req.body.image,
     });
 
   if (updatedCount === 0) {
@@ -75,7 +65,7 @@ app.put("/logos/:nama", async (req, res) => {
 app.delete("/logos/:nama", async (req, res) => {
   const deletedCount = await dbClient
     .table("logos")
-    .where("nama", req.params.nama)
+    .where("name", req.params.name)
     .delete();
 
   if (deletedCount === 0) {
@@ -88,6 +78,36 @@ app.delete("/logos/:nama", async (req, res) => {
   res.json({
     error: null,
   });
+});
+
+app.post("/games", async (req, res) => {
+  try {
+    const logos = await dbClient
+      .table("logos")
+      .column("name", "image")
+      .limit(5)
+      .orderByRaw("RANDOM()");
+
+    const newGame = {
+      player_name: req.body.player_name,
+      score: 0,
+      live: 3,
+      level: 0,
+      logo_images: JSON.stringify(logos),
+      created_at: DateTime.now().toISO(),
+    };
+
+    const savedGame = await dbClient.table("games").insert(newGame);
+
+    res.json({
+      id: savedGame[0],
+      error: null,
+    });
+  } catch (err) {
+    res.json({
+      error: err.message,
+    });
+  }
 });
 
 app.listen(port, () => {

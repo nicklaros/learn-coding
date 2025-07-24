@@ -4,8 +4,8 @@
  */
 export const up = function (knex) {
   return knex.schema.createTable("logos", (table) => {
-    table.string("nama", 128).notNullable().primary();
-    table.string("gambar", 256).notNullable();
+    table.string("name", 128).notNullable().primary();
+    table.string("image", 256).notNullable();
     table.datetime("created_at").notNullable();
   });
 };
