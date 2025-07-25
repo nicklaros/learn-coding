@@ -110,6 +110,99 @@ app.post("/games", async (req, res) => {
   }
 });
 
+app.get("/games/:game_id", async (req, res) => {
+  try {
+    const game = await dbClient
+      .table("games")
+      .where("id", req.params.game_id)
+      .first();
+
+    if (game === null) {
+      return res.json({
+        error: "game tidak ditemukan",
+      });
+    }
+
+    const logoImages = JSON.parse(game.logo_images);
+
+    return res.json({
+      id: game.id,
+      player_name: game.player_name,
+      score: game.score,
+      live: game.live,
+      level: game.level,
+      logo_images: logoImages.map((item) => item.image),
+    });
+  } catch (err) {
+    return res.json({
+      error: err.message,
+    });
+  }
+});
+
+app.post("/games/:game_id/make_a_guess", async (req, res) => {
+  try {
+    const name = req.body.name;
+
+    const game = await dbClient
+      .table("games")
+      .where("id", req.params.game_id)
+      .first();
+
+    if (game === null) {
+      return res.json({
+        error: "game tidak ditemukan",
+      });
+    }
+
+    if (game.live === 0) {
+      return res.json({
+        error: "game sudah berakhir",
+      });
+    }
+
+    const logoImages = JSON.parse(game.logo_images);
+
+    if (game.level >= logoImages.length) {
+      return res.json({
+        error: "game sudah berakhir",
+      });
+    }
+
+    const currentLevelLogo = logoImages[game.level];
+    const isCorrect = currentLevelLogo.name === name;
+
+    let result;
+    if (!isCorrect) {
+      result = {
+        score: game.score - 2,
+        live: game.live - 1,
+        level: game.level,
+        is_correct: isCorrect,
+      };
+    } else {
+      result = {
+        score: game.score + 10,
+        live: game.live,
+        level: game.level + 1,
+        is_correct: isCorrect,
+      };
+    }
+
+    game.score = result.score;
+    game.live = result.live;
+    game.level = result.level;
+
+    await dbClient.table("games").where("id", req.params.game_id).update(game);
+
+    return res.json(result);
+  } catch (err) {
+    return res.json({
+      error: err.message,
+    });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
