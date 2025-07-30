@@ -19,10 +19,9 @@ let logos = [];
 
 const params = new URLSearchParams(window.location.search);
 const gameId = params.get("game_id");
-console.log("gameId", gameId);
 
 loadSession(gameId).then((session) => {
-  if (session) {
+  if (session && session.nyawa > 0) {
     playerName = session.playerName;
     skor = session.skor;
     level = session.level;
@@ -101,6 +100,7 @@ async function cekJawaban() {
 
     showFeedback("GAME OVER", "incorrect");
     saveHighScore();
+    clearCurrentSession();
   }
 }
 

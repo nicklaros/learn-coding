@@ -23,3 +23,15 @@ async function loadSession(gameId) {
     logos: jsonResponse.logo_images,
   };
 }
+
+function getCurrentSession() {
+  return localStorage.getItem("currentSession");
+}
+
+function setCurrentSession(gameId) {
+  localStorage.setItem("currentSession", gameId);
+}
+
+function clearCurrentSession() {
+  localStorage.removeItem("currentSession");
+}

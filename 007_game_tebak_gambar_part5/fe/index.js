@@ -17,7 +17,7 @@ if (topScorer !== null) {
   });
 }
 
-let session = loadSession();
+let session = getCurrentSession();
 if (session === null) {
   document.getElementById("continue-game-button").disabled = true;
 }
@@ -50,7 +50,13 @@ async function mulaiGameBaru() {
 
   const jsonResponse = await response.json();
 
+  setCurrentSession(jsonResponse.id);
+
   bukaHalamanGame(jsonResponse.id);
+}
+
+function lanjutkanGame() {
+  bukaHalamanGame(session);
 }
 
 function bukaHalamanGame(gameId) {
