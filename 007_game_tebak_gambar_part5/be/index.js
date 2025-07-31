@@ -177,7 +177,7 @@ app.post("/games/:game_id/make_a_guess", async (req, res) => {
     let result;
     if (!isCorrect) {
       result = {
-        score: game.score - 2,
+        score: Math.max(game.score - 2, 0),
         live: game.live - 1,
         level: game.level,
         is_correct: isCorrect,
