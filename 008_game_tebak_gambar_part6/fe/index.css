@@ -1,0 +1,77 @@
+.option {
+  font-weight: bold;
+}
+
+.option > div {
+  margin: 25px;
+}
+
+button {
+  padding: 10px 25px;
+  font-weight: bold;
+}
+
+.container-new-game {
+  display: flex;
+}
+
+#player-name-input {
+  flex: auto;
+  text-align: center;
+}
+
+.top-scorer {
+  background-color: #a7c1a8;
+  font-weight: bold;
+}
+
+.top-scorer > div.title {
+  font-size: 25px;
+  padding: 10px;
+}
+
+#top-scorer-list > div {
+  border-radius: 25px;
+  overflow: hidden;
+  display: flex;
+  margin: 1px;
+}
+
+#top-scorer-list .player-name {
+  background-color: #819a91;
+  color: white;
+  text-align: right;
+  width: 40%;
+  padding: 10px;
+}
+
+#top-scorer-list .score {
+  text-align: left;
+  flex: auto;
+  padding: 10px;
+  background-color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .game-body {
+    display: block;
+  }
+
+  .game-body > div {
+    width: 100%;
+    padding: 0;
+  }
+
+  #top-scorer-list {
+    background-color: white;
+  }
+
+  #top-scorer-list > div {
+    border-radius: 0;
+    margin: 0;
+  }
+
+  #top-scorer-list .score {
+    background-color: #d1d8be;
+  }
+}
