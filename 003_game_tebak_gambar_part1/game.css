@@ -1,11 +1,11 @@
-.game-panel {
+.container-game {
   background-color: #d1d8be;
   border: 1px solid #819a91;
   border-radius: 10px;
   text-align: center;
-  overflow: hidden;
   width: 600px;
   margin: 25px auto;
+  overflow: hidden;
 }
 
 .game-title {
@@ -16,45 +16,50 @@
   padding: 15px;
 }
 
-.container-gambar {
+body {
+  background-color: #eeefe0;
+  font-family: Roboto;
+}
+
+.container-picture {
   background-color: white;
 }
 
-#gambar {
+#picture {
   max-width: 400px;
   max-height: 400px;
 }
 
-.container-isian {
+.container-answer {
   display: flex;
   padding: 10px;
 }
 
-#isian {
+#input-answer {
   flex: auto;
   height: 35px;
 }
 
-#tombol-tebak {
+#button-answer {
   font-weight: bold;
   padding: 10px 25px;
 }
 
-.game-statistik {
+.game-stats {
   display: flex;
 }
 
-.game-statistik > div {
+.game-stats > div {
   border-top: 1px solid #a7c1a8;
   flex: auto;
   padding: 15px;
 }
 
-.game-statistik .label {
+.game-stats .label {
   font-weight: bold;
 }
 
-.game-statistik .value {
+.game-stats .value {
   font-size: 35px;
   font-weight: bold;
 }
