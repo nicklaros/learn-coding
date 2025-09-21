@@ -28,6 +28,7 @@ body {
 #picture {
   max-width: 400px;
   max-height: 400px;
+  filter: blur(10px);
 }
 
 .container-answer {
@@ -62,4 +63,28 @@ body {
 .game-stats .value {
   font-size: 35px;
   font-weight: bold;
+}
+
+#feedback-message {
+  border-radius: 25px;
+  max-width: 570px;
+  margin: auto;
+  padding: 15px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#feedback-message.success {
+  border: 1px solid #819a91;
+  background-color: #a7c1a8;
+}
+
+#feedback-message.error {
+  border: 1px solid #af3e3e;
+  background-color: #da6c6c;
+}
+
+#feedback-message.warning {
+  border: 1px solid #af953e;
+  background-color: #dad86c;
 }
