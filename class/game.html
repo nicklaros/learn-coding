@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game Tebak gambar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="game.css" />
+  </head>
+  <body>
+    <div class="container-game">
+      <div class="game-title">Game Tebak Gambar</div>
+
+      <div class="container-picture">
+        <img id="picture" src="https://dummyimage.com/600x400/000/fff" />
+      </div>
+
+      <div class="container-answer">
+        <input id="input-answer" type="text" placeholder="Tulis tebakanmu..." />
+        <button id="button-answer">Tebak</button>
+      </div>
+
+      <div class="game-stats">
+        <div>
+          <div class="label">Skor</div>
+          <div class="value" id="score">0</div>
+        </div>
+        <div>
+          <div class="label">Level</div>
+          <div class="value" id="level">1</div>
+        </div>
+        <div>
+          <div class="label">Nyawa</div>
+          <div class="value" id="live">3</div>
+        </div>
+        <div>
+          <div class="label">Skor Terbaik</div>
+          <div class="value" id="highest-score">0</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

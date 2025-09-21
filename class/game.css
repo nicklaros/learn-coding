@@ -1,0 +1,65 @@
+.container-game {
+  background-color: #d1d8be;
+  border: 1px solid #819a91;
+  border-radius: 10px;
+  text-align: center;
+  width: 600px;
+  margin: 25px auto;
+  overflow: hidden;
+}
+
+.game-title {
+  background-color: #819a91;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  padding: 15px;
+}
+
+body {
+  background-color: #eeefe0;
+  font-family: Roboto;
+}
+
+.container-picture {
+  background-color: white;
+}
+
+#picture {
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.container-answer {
+  display: flex;
+  padding: 10px;
+}
+
+#input-answer {
+  flex: auto;
+  height: 35px;
+}
+
+#button-answer {
+  font-weight: bold;
+  padding: 10px 25px;
+}
+
+.game-stats {
+  display: flex;
+}
+
+.game-stats > div {
+  border-top: 1px solid #a7c1a8;
+  flex: auto;
+  padding: 15px;
+}
+
+.game-stats .label {
+  font-weight: bold;
+}
+
+.game-stats .value {
+  font-size: 35px;
+  font-weight: bold;
+}
