@@ -1,16 +1,11 @@
-body {
-  background-color: #eeefe0;
-  font-family: Roboto;
-}
-
 .container-game {
   background-color: #d1d8be;
   border: 1px solid #819a91;
   border-radius: 10px;
-  overflow: hidden;
   text-align: center;
-  max-width: 800px;
+  width: 600px;
   margin: 25px auto;
+  overflow: hidden;
 }
 
 .game-title {
@@ -21,126 +16,75 @@ body {
   padding: 15px;
 }
 
-.game-body {
-  display: flex;
+body {
+  background-color: #eeefe0;
+  font-family: Roboto;
 }
 
-.game-body > div {
-  width: 50%;
-  padding: 15px;
-}
-
-.container-gambar {
+.container-picture {
   background-color: white;
 }
 
-.container-isian {
+#picture {
+  max-width: 400px;
+  max-height: 400px;
+  filter: blur(10px);
+}
+
+.container-answer {
   display: flex;
+  padding: 10px;
+}
+
+#input-answer {
+  flex: auto;
   height: 35px;
 }
 
-#tebakan {
-  flex: auto;
-}
-
-#tombol {
+#button-answer {
   font-weight: bold;
   padding: 10px 25px;
 }
 
-.game-statistik {
-  margin-top: 25px;
+.game-stats {
+  display: flex;
+}
+
+.game-stats > div {
+  border-top: 1px solid #a7c1a8;
+  flex: auto;
+  padding: 15px;
+}
+
+.game-stats .label {
   font-weight: bold;
 }
 
-.game-statistik > div {
-  border-radius: 25px;
-  overflow: hidden;
-  display: flex;
-  margin: 1px;
-}
-
-.game-statistik .label {
-  background-color: #819a91;
-  color: white;
-  text-align: right;
-  width: 40%;
-  padding: 10px;
-}
-
-.game-statistik .value {
-  text-align: left;
-  flex: auto;
-  padding: 10px;
-  background-color: white;
+.game-stats .value {
+  font-size: 35px;
+  font-weight: bold;
 }
 
 #feedback-message {
   border-radius: 25px;
-  max-width: 770px;
+  max-width: 570px;
   margin: auto;
   padding: 15px;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
 
-.correct {
+#feedback-message.success {
   border: 1px solid #819a91;
   background-color: #a7c1a8;
 }
 
-.incorrect {
+#feedback-message.error {
   border: 1px solid #af3e3e;
   background-color: #da6c6c;
 }
 
-@media only screen and (max-width: 600px) {
-  .game-body {
-    display: block;
-  }
-
-  .game-body > div {
-    width: 100%;
-    padding: 0;
-  }
-
-  .game-statistik {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 kolom */
-    grid-template-rows: auto auto; /* 2 baris */
-  }
-
-  .game-statistik > div {
-    border-radius: 0;
-    flex-direction: column;
-    margin: 0;
-    color: white;
-    padding: 10px;
-    background-color: #819a91;
-  }
-
-  .game-statistik .label {
-    background-color: #819a91;
-    text-align: center;
-    width: 100%;
-    padding: 0;
-    font-weight: normal;
-    font-size: 15px;
-  }
-
-  .game-statistik .value {
-    background-color: #819a91;
-    text-align: center;
-    width: 100%;
-    padding: 0;
-    font-size: 40px;
-  }
-
-  .container-gambar {
-    padding: 25px 0 !important;
-  }
-
-  .container-isian {
-    padding-top: 25px;
-  }
+#feedback-message.warning {
+  border: 1px solid #af953e;
+  background-color: #dad86c;
 }

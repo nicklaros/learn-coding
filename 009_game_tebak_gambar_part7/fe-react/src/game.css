@@ -1,0 +1,114 @@
+
+.container-gambar {
+  background-color: white;
+}
+
+.container-isian {
+  display: flex;
+  height: 35px;
+}
+
+#tebakan {
+  flex: auto;
+}
+
+#tombol {
+  font-weight: bold;
+  padding: 10px 25px;
+}
+
+.game-statistik {
+  margin-top: 25px;
+  font-weight: bold;
+}
+
+.game-statistik > div {
+  border-radius: 25px;
+  overflow: hidden;
+  display: flex;
+  margin: 1px;
+}
+
+.game-statistik .label {
+  background-color: #819a91;
+  color: white;
+  text-align: right;
+  width: 40%;
+  padding: 10px;
+}
+
+.game-statistik .value {
+  text-align: left;
+  flex: auto;
+  padding: 10px;
+  background-color: white;
+}
+
+#feedback-message {
+  border-radius: 25px;
+  max-width: 770px;
+  margin: auto;
+  padding: 15px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.correct {
+  border: 1px solid #819a91;
+  background-color: #a7c1a8;
+}
+
+.incorrect {
+  border: 1px solid #af3e3e;
+  background-color: #da6c6c;
+}
+
+@media only screen and (max-width: 600px) {
+  .game-body {
+    display: block;
+  }
+
+  .game-body > div {
+    width: 100%;
+    padding: 0;
+  }
+
+  .game-statistik {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .game-statistik > div {
+    border-radius: 0;
+    flex-direction: column;
+    margin: 0;
+    color: white;
+    padding: 10px;
+    background-color: #819a91;
+  }
+
+  .game-statistik .label {
+    background-color: #819a91;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    font-weight: normal;
+    font-size: 15px;
+  }
+
+  .game-statistik .value {
+    background-color: #819a91;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    font-size: 40px;
+  }
+
+  .container-gambar {
+    padding: 25px 0 !important;
+  }
+
+  .container-isian {
+    padding-top: 25px;
+  }
+}

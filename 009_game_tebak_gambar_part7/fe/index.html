@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game tebak gambar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div class="container-game">
+      <div class="game-title">Menu Game Tebak Gambar</div>
+
+      <div class="game-body">
+        <div class="option">
+          <div>
+            <button id="continue-game-button" onclick="lanjutkanGame()">
+              Lanjutkan
+            </button>
+          </div>
+
+          <div>atau</div>
+
+          <div class="container-new-game">
+            <input
+              type="text"
+              id="player-name-input"
+              placeholder="Tulis namamu..."
+            />
+
+            <button id="new-game-button" onclick="mulaiGameBaru()">
+              Mulai Game
+            </button>
+          </div>
+        </div>
+
+        <div class="top-scorer">
+          <div class="title">Skor Terbaik</div>
+          <div id="top-scorer-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

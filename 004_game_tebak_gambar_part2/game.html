@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Game tebak gambar</title>
+    <title>Game Tebak gambar</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,44 +12,35 @@
 
     <link rel="stylesheet" href="game.css" />
   </head>
-
   <body>
     <div class="container-game">
       <div class="game-title">Game Tebak Gambar</div>
 
-      <div class="game-body">
-        <div class="container-gambar">
-          <canvas id="canvas"></canvas>
-        </div>
+      <div class="container-picture">
+        <img id="picture" src="https://dummyimage.com/600x400/000/fff" />
+      </div>
 
+      <div class="container-answer">
+        <input id="input-answer" type="text" placeholder="Tulis tebakanmu..." />
+        <button id="button-answer" onclick="checkAnswer()">Tebak</button>
+      </div>
+
+      <div class="game-stats">
         <div>
-          <div class="container-isian">
-            <input type="text" id="tebakan" placeholder="Tulis tebakanmu..." />
-
-            <button id="tombol" onclick="cekJawaban()">tebak</button>
-          </div>
-
-          <div class="game-statistik">
-            <div>
-              <div class="label">Skor:</div>
-              <div class="value" id="skor"></div>
-            </div>
-
-            <div>
-              <div class="label">High Skor:</div>
-              <div class="value" id="high-skor"></div>
-            </div>
-
-            <div>
-              <div class="label">Level:</div>
-              <div class="value" id="level"></div>
-            </div>
-
-            <div>
-              <div class="label">Nyawa:</div>
-              <div class="value" id="nyawa" style="letter-spacing: 0.3em"></div>
-            </div>
-          </div>
+          <div class="label">Skor</div>
+          <div class="value" id="score">0</div>
+        </div>
+        <div>
+          <div class="label">Level</div>
+          <div class="value" id="level">1</div>
+        </div>
+        <div>
+          <div class="label">Nyawa</div>
+          <div class="value" id="live">3</div>
+        </div>
+        <div>
+          <div class="label">Skor Terbaik</div>
+          <div class="value" id="highest-score">0</div>
         </div>
       </div>
     </div>

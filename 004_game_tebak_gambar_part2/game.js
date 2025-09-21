@@ -1,142 +1,101 @@
-const logos = [
+const pictures = [
   {
-    nama: "nike",
-    gambar:
+    name: "nike",
+    picture:
       "https://media.about.nike.com/image-downloads/cf68f541-fc92-4373-91cb-086ae0fe2f88/002-nike-logos-swoosh-white.jpg",
-    blur: 10,
   },
   {
-    nama: "indomaret",
-    gambar:
+    name: "indomaret",
+    picture:
       "https://upload.wikimedia.org/wikipedia/commons/9/9d/Logo_Indomaret.png",
-    blur: 10,
   },
   {
-    nama: "google",
-    gambar:
+    name: "google",
+    picture:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/800px-Google_%22G%22_logo.svg.png",
-    blur: 10,
   },
   {
-    nama: "playstore",
-    gambar:
+    name: "playstore",
+    picture:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8cIC2ovMzZuoSrsMkmddkI05BPf0BQyKzLw&s",
-    blur: 10,
   },
   {
-    nama: "spotify",
-    gambar:
+    name: "spotify",
+    picture:
       "https://e7.pngegg.com/pngimages/18/942/png-clipart-spotify-computer-icons-music-transparency-logo-spotify-logo-grass-thumbnail.png",
-    blur: 10,
-  },
-  {
-    nama: "toyota",
-    gambar:
-      "https://www.toyota.astra.co.id/sites/default/files/2019-11/fit-tc-logo.jpeg",
-    blur: 10,
-  },
-  {
-    nama: "youtube",
-    gambar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR280IBtEFz4F1NuQsv0UAF405nh6J7WmpRyA&s",
-    blur: 10,
-  },
-  {
-    nama: "netflix",
-    gambar:
-      "https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg",
-    blur: 10,
-  },
-  {
-    nama: "quran",
-    gambar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-2vom0l97L8HZrvBkSBySlAzG-Lr7IiiGg&s",
-    blur: 10,
   },
 ];
 
-const feedbackMessageDiv = document.getElementById("feedback-message");
+const feedbackMessageElement = document.getElementById("feedback-message");
+const highestScoreElement = document.getElementById("highest-score");
+const pictureElement = document.getElementById("picture");
+const inputAnswerElement = document.getElementById("input-answer");
+const btnAnswerElement = document.getElementById("button-answer");
 
-let skor = 0;
-let level = 0;
-let nyawa = 3;
+let score = 0;
+let level = 1;
+let live = 3;
 
 const session = loadSession();
 if (session !== null) {
-  skor = session.skor;
+  score = session.score;
   level = session.level;
-  nyawa = session.nyawa;
+  live = session.live;
 }
 
-let highScore = localStorage.getItem("highScore");
-if (highScore === null) {
-  highScore = 0;
+let highestScore = localStorage.getItem("highestScore");
+if (highestScore === null) {
+  highestScore = 0;
 }
-document.getElementById("high-skor").textContent = highScore;
+highestScoreElement.textContent = highestScore;
 
-updateGame();
+updateGameStats();
 
-const canvas = document.getElementById("canvas");
+pictureElement.src = pictures[level - 1].picture;
 
-const ctx = canvas.getContext("2d");
-ctx.filter = `blur(${logos[level].blur}px)`; // blur(10px)
+function checkAnswer() {
+  const answer = inputAnswerElement.value.toLowerCase();
 
-const img = new Image();
-img.src = logos[level].gambar;
-img.onload = () => applyBlur();
+  if (answer === pictures[level - 1].name) {
+    level++;
 
-function cekJawaban() {
-  const input = document.getElementById("tebakan");
-  const tebakan = input.value.toLowerCase();
+    score += 10;
 
-  if (tebakan === logos[level].nama) {
-    skor += 10;
-    showFeedback("Benar! Skor +10 🎉", "correct"); // Ganti alert dengan feedback
-    document.getElementById("skor").textContent = skor;
+    showFeedback("Benar! Skor +10", "success");
 
-    if (level < logos.length - 1) {
-      level++;
-      document.getElementById("level").textContent = level + 1;
-
-      img.src = logos[level].gambar;
-      resetBlur();
-    } else {
-      saveHighScore();
-      resetSession();
-      alert("Selamat! Kamu menang! 🎉");
+    if (level <= pictures.length) {
+      pictureElement.src = pictures[level - 1].picture;
     }
-
-    input.classList.add("jawaban-benar");
-    setTimeout(() => input.classList.remove("jawaban-benar"), 300);
   } else {
-    nyawa--;
+    live--;
 
-    skor -= 2;
-    showFeedback(`Salah! Nyawa berkurang. Sisa nyawa: ${nyawa}`, "incorrect"); // Feedback visual untuk salah
-    document.getElementById("skor").textContent = skor;
+    score -= 2;
 
-    logos[level].blur = Math.max(6, logos[level].blur - 2);
-
-    applyBlur();
-    updateNyawa();
-
-    input.classList.add("jawaban-salah");
-    setTimeout(() => input.classList.remove("jawaban-salah"), 500);
+    if (live == 0) {
+      showFeedback("GAME OVER", "warning");
+    } else {
+      showFeedback(`Salah! Nyawa berkurang. Sisa nyawa: ${live}`, "error");
+    }
   }
 
-  document.getElementById("tebakan").value = "";
+  inputAnswerElement.value = "";
+  inputAnswerElement.focus();
 
-  if (nyawa == 0) {
-    document.getElementById("tebakan").disabled = true;
-    document.getElementById("tombol").disabled = true;
+  if (live == 0 || level > pictures.length) {
+    inputAnswerElement.disabled = true;
+    btnAnswerElement.disabled = true;
 
-    showFeedback("GAME OVER", "incorrect");
-
-    saveHighScore();
+    saveHighestScore();
     resetSession();
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 4000);
   } else {
     autosaveSession();
   }
+
+  updateGameStats();
 }
 
 function loadSession() {
@@ -150,9 +109,9 @@ function loadSession() {
 
 function autosaveSession() {
   const session = {
-    skor: skor,
+    score: score,
     level: level,
-    nyawa: nyawa,
+    live: live,
   };
 
   const encodedSession = JSON.stringify(session);
@@ -164,44 +123,27 @@ function resetSession() {
   localStorage.removeItem("session");
 }
 
-function updateGame() {
-  document.getElementById("skor").textContent = skor;
-  document.getElementById("level").textContent = level + 1;
-
-  updateNyawa();
-}
-
-function resetBlur() {
-  logos[level].blur = 15;
-  img.onload = () => {
-    applyBlur();
-  };
-}
-
-function applyBlur() {
-  ctx.filter = `blur(${logos[level].blur}px)`;
-  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-}
-
-function updateNyawa() {
-  document.getElementById("nyawa").textContent =
-    "❤️".repeat(nyawa) + "♡".repeat(3 - nyawa);
+function updateGameStats() {
+  document.getElementById("score").textContent = score;
+  document.getElementById("level").textContent = level;
+  document.getElementById("live").textContent =
+    "❤️".repeat(live) + "♡".repeat(3 - live);
 }
 
 function showFeedback(message, type) {
-  feedbackMessageDiv.textContent = message;
-  feedbackMessageDiv.className = type;
-  feedbackMessageDiv.style.opacity = 1;
+  feedbackMessageElement.textContent = message;
+  feedbackMessageElement.className = type;
+  feedbackMessageElement.style.opacity = 1;
 
   setTimeout(() => {
-    feedbackMessageDiv.style.opacity = 0;
+    feedbackMessageElement.style.opacity = 0;
   }, 4000);
 }
 
-function saveHighScore() {
-  const highScore = localStorage.getItem("highScore");
+function saveHighestScore() {
+  const highestScore = localStorage.getItem("highestScore");
 
-  if (highScore === null || parseInt(highScore) < skor) {
-    localStorage.setItem("highScore", skor.toString());
+  if (highestScore === null || parseInt(highestScore) < score) {
+    localStorage.setItem("highestScore", score.toString());
   }
 }
